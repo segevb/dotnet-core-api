@@ -20,7 +20,10 @@ pipeline {
 
     stage('Upload Docker Image to Repo') {
       steps {
-        sh 'hello'
+        withDockerRegistry(credentialsId: 'docker-hun-creds') {
+        sh "docker push segevb/todoapi:${BUILD_ID}"
+
+}
       }
     }
 
