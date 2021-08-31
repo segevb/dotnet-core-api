@@ -31,7 +31,7 @@ pipeline {
 
         stage('Test and Run the Image') {
           steps {
-            sh 'docker run -itd -p 80:80 segevb/todoapi:${BUILD_ID} && curl localhost:80'
+            sh 'docker run -itd -p 80:80 --name todoapi segevb/todoapi:${BUILD_ID} && curl localhost:80 && docker stop todoapi && docker rm todoapi'
           }
         }
 
